@@ -1,0 +1,50 @@
+{
+  "id": "ruadan",
+  "cmd": null,
+  "cpus": 0.5,
+  "mem": 128,
+  "disk": 0,
+  "instances": 1,
+  "executor": null,
+  "fetch": null,
+  "constraints": null,
+  "acceptedResourceRoles": null,
+  "user": null,
+  "container": {
+  "type": "DOCKER",
+    "docker": {
+      "image": "michalma/ruadan",
+      "forcePullImage": false,
+      "privileged": false,
+      "portMappings": [
+        {
+          "containerPort": 8000,
+          "protocol": "tcp",
+          "name": "ruadan",
+          "servicePort": 8000,
+          "labels": {
+            "VIP_0": "ruadan:8000"
+          },
+          "hostPort": 0
+        }
+      ],
+      "network": "USER"
+    }
+  },
+  "labels": null,
+  "healthChecks": [
+    {
+      "protocol": "TCP",
+      "port": 8000
+    }
+  ],
+  "env": {
+    "EXHIBITOR_ADDRESS": "$EXHIBITOR_ADDRESS",
+    "MARATHON_ADDRESS": "$MARATHON_ADDRESS",
+    "DCOS_ADDRESS": "$DCOS_ADDRESS",
+    "CLUSTER_SIZE": "3"
+  },
+  "ipAddress": {
+    "networkName": "dcos"
+  }
+}
