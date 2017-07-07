@@ -20,7 +20,7 @@
           "hostPort": 0,
           "servicePort": 10105,
           "protocol": "tcp",
-          "name": "default",
+          "name": "ruadan",
           "labels": {}
         }
       ],
@@ -33,6 +33,7 @@
     "EXHIBITOR_ADDRESS": "EXHIBITOR_ADDRESS_VALUE",
     "MARATHON_ADDRESS": "MARATHON_ADDRESS_VALUE",
     "DCOS_ADDRESS": "DCOS_ADDRESS_VALUE"
+    "CLUSTER_SIZE": "3"
   },
   "healthChecks": [
     {
