@@ -12,19 +12,18 @@
     "type": "DOCKER",
     "volumes": [],
     "docker": {
-      "image": "michalma/ruadan",
-      "network": "USER",
+     "image": "michalma/ruadan",
+     "privileged": false,
+      "network": "BRIDGE",
       "portMappings": [
         {
           "containerPort": 8000,
           "hostPort": 0,
           "servicePort": 10105,
           "protocol": "tcp",
-          "name": "ruadan",
-          "labels": {}
+          "name": "default"
         }
       ],
-      "privileged": false,
       "parameters": [],
       "forcePullImage": false
     }
