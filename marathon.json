@@ -5,46 +5,52 @@
   "mem": 128,
   "disk": 0,
   "instances": 1,
-  "executor": null,
-  "fetch": null,
-  "constraints": null,
-  "acceptedResourceRoles": null,
-  "user": null,
+  "acceptedResourceRoles": [
+    "*"
+  ],
   "container": {
-  "type": "DOCKER",
+    "type": "DOCKER",
+    "volumes": [],
     "docker": {
       "image": "michalma/ruadan",
-      "forcePullImage": false,
-      "privileged": false,
+      "network": "USER",
       "portMappings": [
         {
           "containerPort": 8000,
+          "hostPort": 0,
+          "servicePort": 10105,
           "protocol": "tcp",
-          "name": "ruadan",
-          "servicePort": 8000,
-          "labels": {
-            "VIP_0": "ruadan:8000"
-          },
-          "hostPort": 0
+          "name": "default",
+          "labels": {}
         }
       ],
-      "network": "USER"
+      "privileged": false,
+      "parameters": [],
+      "forcePullImage": false
     }
   },
-  "labels": null,
-  "healthChecks": [
-    {
-      "protocol": "TCP",
-      "port": 8000
-    }
-  ],
   "env": {
     "EXHIBITOR_ADDRESS": "EXHIBITOR_ADDRESS_VALUE",
     "MARATHON_ADDRESS": "MARATHON_ADDRESS_VALUE",
-    "DCOS_ADDRESS": "DCOS_ADDRESS_VALUE",
-    "CLUSTER_SIZE": "3"
+    "DCOS_ADDRESS": "DCOS_ADDRESS_VALUE"
   },
-  "ipAddress": {
-    "networkName": "dcos"
+  "healthChecks": [
+    {
+      "gracePeriodSeconds": 300,
+      "intervalSeconds": 60,
+      "timeoutSeconds": 20,
+      "maxConsecutiveFailures": 3,
+      "port": 8000,
+      "protocol": "TCP"
+    }
+  ],
+  "labels": {
+    "HAPROXY_GROUP": "external",
+    "HAPROXY_0_VHOST": "ruadan.cmp.barco.cloud"
+  },
+  "portDefinitions": [],
+  "upgradeStrategy": {
+    "minimumHealthCapacity": 1,
+    "maximumOverCapacity": 0
   }
 }
